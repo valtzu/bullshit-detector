@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  caesar:
+    build: caesar/
+    image: caesar:latest
+  api:
+    image: php:7.4-beta
+  web:
+    image: node:12
