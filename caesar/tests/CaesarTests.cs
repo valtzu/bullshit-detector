@@ -4,7 +4,7 @@ using Utils;
 
 namespace Tests
 {
-  public class Tests
+  public class CaesarTests
   {
     [Fact]
     public void Decipher()
