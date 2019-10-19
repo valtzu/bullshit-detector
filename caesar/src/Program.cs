@@ -12,8 +12,8 @@ public static class Program
 
     server.ClientConnected += ClientConnected;
 
-    Console.WriteLine($"Starting server at {server.Port}");
-    server.Run().Wait();
+    server.Start();
+    server.Wait();
   }
 
   private static void ClientConnected(object sender, Server.ClientConnectedEventArgs e)
