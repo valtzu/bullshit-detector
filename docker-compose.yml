@@ -1,9 +1,22 @@
 version: "3.7"
 services:
   caesar:
-    build: caesar/
-    image: caesar:latest
-  api:
-    image: php:7.4-beta
+    build:
+      context: caesar/
+      target: ${ENV:-production}
+    image: caesar:${ENV:-latest}
+  blackbox:
+    build:
+      context: blackbox/
+      target: ${ENV:-production}
+    image: blackbox:${ENV:-latest}
+    environment:
+      - APP_ENV="${ENV:-production}"
+    env_file:
+      - blackbox.env
+    ports:
+      - 3000:80
+    volumes:
+      - ./blackbox:/var/www/html
   web:
     image: node:12

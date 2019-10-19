@@ -1,0 +1,27 @@
+{
+    "name": "valtzu/blackbox",
+    "description": "A package that determines whether a phrase or a word is Finnish",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Blackbox\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Valtteri Rauhala",
+            "email": "valtzu@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "require": {
+      "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    }
+}

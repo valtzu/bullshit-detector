@@ -17,13 +17,13 @@ RUN dotnet publish -c Release -o out
 
 
 # test application -- see: dotnet-docker-unit-testing.md
-FROM build AS test
+FROM build AS testing
 WORKDIR /app/tests
 COPY tests/. .
 ENTRYPOINT ["dotnet", "test", "--logger:trx"]
 
 
-FROM mcr.microsoft.com/dotnet/core/runtime:3.0 AS runtime
+FROM mcr.microsoft.com/dotnet/core/runtime:3.0 AS production
 WORKDIR /app
 COPY --from=build /app/src/out ./
 ENTRYPOINT ["dotnet", "app.dll"]
