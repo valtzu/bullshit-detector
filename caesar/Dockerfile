@@ -13,7 +13,7 @@ WORKDIR /app/
 COPY src/. ./src/
 COPY utils/. ./utils/
 WORKDIR /app/src
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o Release && dotnet publish -c Debug -o Debug
 
 
 # test application -- see: dotnet-docker-unit-testing.md
@@ -23,7 +23,14 @@ COPY tests/. .
 ENTRYPOINT ["dotnet", "test", "--logger:trx"]
 
 
+# debug application
+FROM mcr.microsoft.com/dotnet/core/runtime:3.0 AS dev
+WORKDIR /app
+COPY --from=build /app/src/Debug ./
+ENTRYPOINT ["dotnet", "app.dll"]
+
+
 FROM mcr.microsoft.com/dotnet/core/runtime:3.0 AS production
 WORKDIR /app
-COPY --from=build /app/src/out ./
+COPY --from=build /app/src/Release ./
 ENTRYPOINT ["dotnet", "app.dll"]
