@@ -39,6 +39,7 @@ public class App
         for (this.caesar.Shift = 0; this.caesar.Shift < this.caesar.Alphabet.Length; this.caesar.Shift++)
           writer.WriteLine(this.caesar.Decipher(received));
 
+        writer.WriteLine();
         writer.Flush();
       }
     }
