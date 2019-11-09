@@ -11,12 +11,21 @@ services:
       target: ${ENV:-production}
     image: blackbox:${ENV:-latest}
     environment:
-      - APP_ENV="${ENV:-production}"
+      - APP_ENV=${ENV:-production}
+      - CAESAR_ENDPOINT=tcp://caesar:50000
+    user: ${UID:-0}
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
     env_file:
       - blackbox.env
     ports:
-      - 3000:80
-    volumes:
-      - ./blackbox:/var/www/html
+      - 3001:80
   web:
-    image: node:12
+    build:
+      context: web/
+      target: ${ENV:-production}
+      args:
+        - BLACKBOX_API_ENDPOINT=${BLACKBOX_PUBLIC_ENDPOINT}
+    image: web:${ENV:-latest}
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
