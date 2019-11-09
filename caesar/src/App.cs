@@ -6,16 +6,10 @@ using static System.Console;
 
 public class App
 {
-  private Caesar caesar;
   private Server server;
 
   public App(int port)
   {
-    this.caesar = new Caesar {
-      Alphabet = "abcdefghijklmnopqrstuvwxyzåäö",
-      Shift = 0
-    };
-
     this.server = new Server { Port = port };
     this.server.ClientConnected += this.ClientConnected;
   }
@@ -29,6 +23,10 @@ public class App
   private void ClientConnected(object sender, Server.ClientConnectedEventArgs e)
   {
     Console.WriteLine("Client connected");
+    var caesar = new Caesar {
+      Alphabet = "abcdefghijklmnopqrstuvwxyzåäö",
+      Shift = 0
+    };
 
     using (var stream = e.Client.GetStream())
     using (var reader = new StreamReader(stream, Encoding.UTF8))
@@ -36,8 +34,8 @@ public class App
       while (!reader.EndOfStream) {
         var received = reader.ReadLine();
 
-        for (this.caesar.Shift = 0; this.caesar.Shift < this.caesar.Alphabet.Length; this.caesar.Shift++)
-          writer.WriteLine(this.caesar.Decipher(received));
+        for (caesar.Shift = 0; caesar.Shift < caesar.Alphabet.Length; caesar.Shift++)
+          writer.WriteLine(caesar.Decipher(received));
 
         writer.WriteLine();
         writer.Flush();
