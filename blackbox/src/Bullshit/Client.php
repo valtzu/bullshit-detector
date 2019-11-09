@@ -11,13 +11,13 @@ use JsonException;
 class Client
 {
 	private HttpClient $httpClient;
-	private string $startUrl;
+	private string $endpoint;
 	private ?StartResponse $start = null;
 
-	public function __construct(string $startUrl, ?HttpClient $client = null)
+	public function __construct(string $endpoint, ?HttpClient $client = null)
 	{
 		$this->httpClient = $client ?? new HttpClient;
-		$this->startUrl = $startUrl;
+		$this->endpoint = $endpoint;
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Client
 	 */
 	private function start(): StartResponse
 	{
-		return new StartResponse($this->get($this->startUrl));
+		return new StartResponse($this->get($this->endpoint));
 	}
 
 	/**

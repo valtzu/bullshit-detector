@@ -2,10 +2,8 @@
 
 require_once 'vendor/autoload.php';
 
-$startUrl = getenv('START_URL');
+$bullshitEndpoint = getenv('BULLSHIT_ENDPOINT');
+$caesarEndpoint = getenv('CAESAR_ENDPOINT');
 
-phpinfo();die();
-die("FAAAK");
-
-$app = new Blackbox\App($startUrl);
+$app = new Blackbox\App($bullshitEndpoint, $caesarEndpoint);
 $app->run();

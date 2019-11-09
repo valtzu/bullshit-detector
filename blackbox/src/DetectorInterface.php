@@ -4,5 +4,5 @@ namespace Blackbox;
 
 interface DetectorInterface
 {
-	function isSuspicious(string $input): bool;
+	function matches(string $input): bool;
 }

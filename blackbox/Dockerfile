@@ -1,28 +1,30 @@
 FROM php:7.4-rc-apache AS base
+WORKDIR /var/www/html
+RUN a2enmod rewrite
+
+# Build image
+FROM base AS build
 RUN \
     apt-get update && \
     apt-get install -y zip unzip git && \
     true
-ENV PATH="vendor/bin:${PATH}"
 COPY --from=composer /usr/bin/composer /usr/bin/
-WORKDIR /var/www/html
-COPY composer.json composer.lock ./
-
-FROM base AS build
+COPY composer.* ./
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN composer install --prefer-dist --no-suggest --no-dev --optimize-autoloader
 
+
+# Dev image. Using build as base to prevent double-loading composer dependencies
 FROM build AS dev
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 RUN composer install --no-suggest
-# xdebug not yet supported on php 7.4
-#RUN \
-#    pecl install xdebug-2.6.0 && \
-#    docker-php-ext-enable xdebug && \
-#    true
 
+
+# Testing image
 FROM dev AS testing
-# docker-php-ext-disable xdebug
-CMD phpunit
+CMD vendor/bin/phpunit
 
-FROM php:7.4-rc-apache AS production
-WORKDIR /var/www/html
-COPY --from=build . .
+
+# Production image
+FROM base AS production
+COPY --from=build --chown=www-data . .

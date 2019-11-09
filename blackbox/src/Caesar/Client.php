@@ -38,7 +38,7 @@ class Client
 			$this->tcpClient->connect();
 
 			$this->tcpClient->writeLine($input);
-			while (!$this->tcpClient->endOfStream() && $line = $this->tcpClient->readLine())
+			while (!$this->tcpClient->endOfStream() && $line = trim($this->tcpClient->readLine()))
 				yield $line;
 
 			$this->tcpClient->close();
