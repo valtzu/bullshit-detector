@@ -19,10 +19,6 @@ Frontend will be available at http://localhost:3000/
 
 #### Run in production mode:
 
-`ENV=production docker-compose up`
-
-or if `ENV` not set in the current environment:
-
 `docker-compose up`
 
 
