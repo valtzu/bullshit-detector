@@ -10,6 +10,6 @@ class IllativeGrammaticalCaseDetector implements DetectorInterface
 
 	function matches(string $input): bool
 	{
-		return preg_match('/(([aouiyäö])\2n|eeseen|eisiin)$/u', $input);
+		return preg_match('/(([aouiyäö])\2n|eeseen|ei(siin|hin))$/u', $input);
 	}
 }

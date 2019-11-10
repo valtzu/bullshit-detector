@@ -10,6 +10,6 @@ class PartitiveGrammaticalCaseDetector implements DetectorInterface
 
 	function matches(string $input): bool
 	{
-		return preg_match('/[^aeiouyäö](([aou]i?|aust|auksi)a|[äöy]i?ä|[^aeiouyäö]että|[^aeioyäö]utta)$/u', $input);
+		return preg_match('/(([^aeiouyäö]([aou]i?|aust|i)a|[äöy]i?ä|[^aeiouyäö][eä]ttä|[^aeiouyäö]eitä|[^aeioyäö]utta)|ksi[aä]|[öi]tä|[oi]ta)$/u', $input);
 	}
 }

@@ -10,6 +10,6 @@ class EssiveGrammaticalCaseDetector implements DetectorInterface
 
 	function matches(string $input): bool
 	{
-		return preg_match('/[^aeiouyäö]([aou]i?na|([äöy]i?|i)nä|e[ei]nä)$/u', $input);
+		return preg_match('/[^aeiouyäö]([aou]i?na|([äöy]i?|i)nä|e[ei]n[aä])$/u', $input);
 	}
 }

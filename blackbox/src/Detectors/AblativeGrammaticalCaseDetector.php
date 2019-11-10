@@ -10,6 +10,6 @@ class AblativeGrammaticalCaseDetector implements DetectorInterface
 
 	function matches(string $input): bool
 	{
-		return preg_match('/[^aeiouyäö]([aou]i?lta|([äöy]i?|i)ltä|e[ei]ltä)$/u', $input);
+		return preg_match('/[^aeiouyäö]([aoui]i?lta|([äöy]i?|i)ltä|e[ei]ltä)$/u', $input);
 	}
 }

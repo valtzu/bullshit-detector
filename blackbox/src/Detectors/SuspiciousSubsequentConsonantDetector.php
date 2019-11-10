@@ -10,6 +10,6 @@ class SuspiciousSubsequentConsonantDetector implements DetectorInterface
 
 	function matches(string $input): bool
 	{
-		return preg_match('/b[^aeiouyäöjlrv]|d[^aeiouyäölnrv]|f[^aeiouyäötgr]|g[^aeiouyäörmn]|h[^aeiouyäöktjdvnml]|j[^aeiouyäö]|l[^aeiouyäögtkmpjvlsh]|r[^aeiouyäötkmpjvshrn]|h[^aeiouyäötdkmjnvlr]|s[^aeiouyäötkpmnhvs]|t[^aeiouyäömskpjrvht]|p[^aeiouyäöpsrl]|k[^aeiouyäökntsrv]|n[^aeiouyäögkntpshj]|m[^aeiouyäömps]|v[^aeiouyäö]|w|z|[^aeiouyäö]{3,}]/ui', $input);
+		return preg_match('/b[^aeiouyäöjlrv]|d[^aeiouyäölnrv]|f[^aeiouyäötgr]|g[^aeiouyäörmn]|h[^aeiouyäöktjdvnmlr]|j[^aeiouyäö]|l[^aeiouyäögtkmpjvlsh]|r[^aeiouyäötkmpjvshrn]|s[^aeiouyäötkpmnhvs]|t[^aeiouyäömskpjrvht]|p[^aeiouyäöpsrl]|k[^aeiouyäökntsrv]|n[^aeiouyäögkntpshj]|m[^aeiouyäömps]|v[^aeiouyäö]|w|z|[^aeiouyäö]{3,}]/ui', $input);
 	}
 }
