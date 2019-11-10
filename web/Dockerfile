@@ -12,7 +12,7 @@ COPY . .
 ARG BLACKBOX_API_ENDPOINT
 ENV VUE_APP_API_ENDPOINT=$BLACKBOX_API_ENDPOINT
 RUN yarn run build
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 # dev image
 FROM build AS dev

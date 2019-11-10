@@ -1,7 +1,7 @@
 #### Configuration:
 When running docker-compose, you need to set `BULLSHIT_ENDPOINT` environment variable. This is a runtime variable and
 does not require rebuild of any image whenever changing its value.
-To avoid inputting bullshit endpoint every time running docker-compose, create file named blackbox.env with the
+To avoid inputting bullshit endpoint every time running docker-compose, create file named .env with the
 following content:
 
 `BULLSHIT_ENDPOINT=<url_to_the_bullshit_endpoint>`

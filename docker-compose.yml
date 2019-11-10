@@ -13,10 +13,9 @@ services:
     environment:
       - APP_ENV=${ENV:-production}
       - CAESAR_ENDPOINT=tcp://caesar:50000
+      - BULLSHIT_ENDPOINT=$BULLSHIT_ENDPOINT
     sysctls:
       - net.ipv4.ip_unprivileged_port_start=0
-    env_file:
-      - blackbox.env
     ports:
       - 3001:80
   web:
@@ -24,7 +23,7 @@ services:
       context: web/
       target: ${ENV:-production}
       args:
-        - BLACKBOX_API_ENDPOINT=${BLACKBOX_PUBLIC_ENDPOINT}
+        - BLACKBOX_API_ENDPOINT=${BLACKBOX_PUBLIC_ENDPOINT:-/api}
     image: web:${ENV:-latest}
     sysctls:
       - net.ipv4.ip_unprivileged_port_start=0
