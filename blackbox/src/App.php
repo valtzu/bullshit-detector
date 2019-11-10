@@ -47,10 +47,11 @@ class App
 					$this->scoreCalculator->setPhrase($permutation);
 					$this->scoreCalculator->process();
 
-					if ($this->scoreCalculator->getScore() < 1)
+					if ($this->scoreCalculator->getScore() <= 0.41)
 						continue;
 
 					$output['results'] = $this->scoreCalculator->getInterpretation();
+					break;
 				}
 
 				break;
@@ -61,6 +62,6 @@ class App
 		}
 
 		header("Content-Type: application/json; charset=utf-8");
-		echo json_encode($output, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+		echo json_encode($output, JSON_UNESCAPED_UNICODE);
 	}
 }

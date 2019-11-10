@@ -12,8 +12,10 @@ use Blackbox\Detectors\EssiveGrammaticalCaseDetector;
 use Blackbox\Detectors\GenitiveGrammaticalCaseDetector;
 use Blackbox\Detectors\IllativeGrammaticalCaseDetector;
 use Blackbox\Detectors\InessiveGrammaticalCaseDetector;
+use Blackbox\Detectors\NegationDetector;
 use Blackbox\Detectors\ParticleDetector;
 use Blackbox\Detectors\PartitiveGrammaticalCaseDetector;
+use Blackbox\Detectors\PluralInflectionDetector;
 use Blackbox\Detectors\QuestionDetector;
 use Blackbox\Detectors\SuspiciousSubsequentConsonantDetector;
 use Blackbox\Detectors\ToBeVerbDetector;
@@ -38,16 +40,18 @@ class ScoreCalculator
 			[new AllativeGrammaticalCaseDetector, 1],
 			[new ElativeGrammaticalCaseDetector, 1],
 			[new EssiveGrammaticalCaseDetector, 1],
-			[new GenitiveGrammaticalCaseDetector, 1],
+			[new GenitiveGrammaticalCaseDetector, 0.5],
 			[new IllativeGrammaticalCaseDetector, 1],
 			[new InessiveGrammaticalCaseDetector, 1],
 			[new PartitiveGrammaticalCaseDetector, 1],
 			[new TranslativeGrammaticalCaseDetector, 1],
+			[new PluralInflectionDetector, 1],
+			[new NegationDetector, 2],
 
-			[new SuspiciousSubsequentConsonantDetector, -3],
-			[new ParticleDetector, 1.2],
-			[new ToBeVerbDetector, 1.5],
-			[new QuestionDetector, 1.5],
+			[new SuspiciousSubsequentConsonantDetector, -4],
+			[new ParticleDetector, 2],
+			[new ToBeVerbDetector, 2],
+			[new QuestionDetector, 2],
 		];
 
 		$totalScore = 0;
@@ -71,11 +75,11 @@ class ScoreCalculator
 				$totalScore += $score;
 			}
 
-			$output['words'] = ['word' => $word, 'tags' => $tags];
+			$output['words'][] = ['word' => $word, 'tags' => $tags];
 		}
 
 		$this->interpretation = $output;
-		$this->score = $totalScore / count($output);
+		$this->score = $totalScore / count($output['words']);
 	}
 
 	public function getInterpretation(): array

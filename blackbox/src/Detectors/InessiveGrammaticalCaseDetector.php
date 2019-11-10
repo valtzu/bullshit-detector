@@ -10,6 +10,6 @@ class InessiveGrammaticalCaseDetector implements DetectorInterface
 
 	function matches(string $input): bool
 	{
-		return preg_match('/[^aeiouyäö]([aou][^aeiouyäö]*[ei]?ssa|([äöy][ei]?|i)ssä|e[ei]ssä)\b/u', $input);
+		return preg_match('/([aou][^aeiouyäö]*[ei]?ssa|([äöy][ei]?|i)ssä|e[ei]ssä)\b/u', $input);
 	}
 }
