@@ -32,7 +32,5 @@ you need to set `BLACKBOX_PUBLIC_ENDPOINT` env variable on command line or in
 .env file in the project root. This environment variable will be used at build stage so you need to rebuild image
 `web` whenever you change this value.
 In production, you should never use docker-compose.override.yml, instead you need to always explicitly define the yml
-file, e.g. `docker-compose -f docker-compose.yml up`
-
-You can also set default `ENV` in the .env file
-if you want other than production environment by default.
+file, e.g. `docker-compose -f docker-compose.yml up`. Also, you probably want to set up a frontend proxy to apply SSL &
+to get rid of port numbers in urls.
