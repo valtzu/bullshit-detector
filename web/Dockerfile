@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install sudo -y
 
 RUN mkdir -p /home/node/app
 WORKDIR /home/node/app
-RUN yarn global add @vue/cli
 COPY package.json yarn.lock ./
 RUN yarn install
 COPY . .
