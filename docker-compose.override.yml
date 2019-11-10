@@ -6,6 +6,7 @@ services:
       - 3001:80
     volumes:
       - ./blackbox:/var/www/html
+      - /var/www/html/vendor
   web:
     build:
       args:
