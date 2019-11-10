@@ -18,7 +18,7 @@ if [[ $(id -g ${GROUP_NAME}) != "${GROUP_ID}" ]]; then
 fi
 
 source /etc/apache2/envvars
-chown -R -L --dereference ${USER_NAME}:${GROUP_NAME} $APACHE_LOCK_DIR $APACHE_RUN_DIR $APACHE_LOG_DIR
+chown -R -L --dereference ${USER_NAME}:${GROUP_NAME} $APACHE_LOCK_DIR $APACHE_RUN_DIR $APACHE_LOG_DIR "$DIR/vendor"
 
 export HOME=/home/${USER_NAME}
 exec sudo -E -u ${USER_NAME} -g ${GROUP_NAME} "$@"
